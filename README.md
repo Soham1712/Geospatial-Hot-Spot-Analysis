@@ -1,4 +1,5 @@
 # Geospatial-Hot-Spot-Analysis
+This project  focuses on **Spatial Hot Spot Analysis** using Apache Spark. It involves:
 
 1. **Hot Zone Analysis** - Performing a range join operation between a rectangle dataset and a point dataset to calculate the density of points within each rectangle.
 2. **Hot Cell Analysis** - Identifying statistically significant spatial hot spots using **Getis-Ord G-statistic** on a spatio-temporal big dataset.
@@ -8,11 +9,12 @@
 |-- src/
     |-- main/
         |-- scala/
-            |-- HotZoneAnalysis.scala
-            |-- HotZoneUtils.scala
-            |-- HotCellAnalysis.scala
-            |-- HotCellUtils.scala
-            |-- Main.scala
+            |-- cse511/
+                |-- HotZoneAnalysis.scala
+                |-- HotZoneUtils.scala
+                |-- HotCellAnalysis.scala
+                |-- HotCellUtils.scala
+                |-- Main.scala
 |-- target/
 |-- CSE511-assembly-0.1.0.jar
 |-- README.md
@@ -26,6 +28,16 @@
 
 If you don't have Spark installed, follow [Apache Spark Installation Guide](https://spark.apache.org/downloads.html).
 
+### Setting Up the Environment (Docker)
+1. Pull the provided docker image.
+2. Start the container:
+   ```sh
+   docker run -it --rm <docker_image>
+   ```
+3. Navigate to the project directory:
+   ```sh
+   cd /root/cse511
+   ```
 
 ## Downloading the Data
 The dataset for this assignment consists of NYC Taxi trip pickup locations. You can download the necessary data files from the following sources:
@@ -40,25 +52,25 @@ To build the project and create the executable JAR file, run:
 ```sh
 sbt assembly
 ```
-This generates `geospatial-assembly-0.1.0.jar` inside `./target/scala-2.11/`.
+This generates `CSE511-assembly-0.1.0.jar` inside `./target/scala-2.11/`.
 
 ### 2. Running the Spark Job
 #### Hot Zone Analysis
 ```sh
-spark-submit geospatial-assembly-0.1.0.jar result/output hotzoneanalysis <path_to_point_data> <path_to_zone_data>
+spark-submit CSE511-assembly-0.1.0.jar result/output hotzoneanalysis <path_to_point_data> <path_to_zone_data>
 ```
 Example:
 ```sh
-spark-submit geospatial-assembly-0.1.0.jar result/output hotzoneanalysis src/resources/point-hotzone.csv src/resources/zone-hotzone.csv
+spark-submit CSE511-assembly-0.1.0.jar result/output hotzoneanalysis src/resources/point-hotzone.csv src/resources/zone-hotzone.csv
 ```
 
 #### Hot Cell Analysis
 ```sh
-spark-submit geospatial-assembly-0.1.0.jar result/output hotcellanalysis <path_to_nyc_taxi_data>
+spark-submit CSE511-assembly-0.1.0.jar result/output hotcellanalysis <path_to_nyc_taxi_data>
 ```
 Example:
 ```sh
-spark-submit geospatial-assembly-0.1.0.jar result/output hotcellanalysis src/resources/yellow_tripdata_2009-01_point.csv
+spark-submit CSE511-assembly-0.1.0.jar result/output hotcellanalysis src/resources/yellow_tripdata_2009-01_point.csv
 ```
 
 ## Input & Output Formats
@@ -92,4 +104,7 @@ Feel free to fork and contribute! Open issues or pull requests if you encounter 
 
 ## License
 MIT License
+
+---
+If you have any issues running the project, please raise an issue on the repository.
 
